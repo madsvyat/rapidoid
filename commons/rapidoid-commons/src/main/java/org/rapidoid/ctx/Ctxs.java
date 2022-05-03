@@ -34,8 +34,6 @@ public class Ctxs extends RapidoidThing {
 
 	private static volatile ThreadLocal<Ctx> CTXS = new ThreadLocal<Ctx>();
 
-	private static volatile PersisterProvider persisterProvider;
-
 	private Ctxs() {
 	}
 
@@ -98,24 +96,6 @@ public class Ctxs extends RapidoidThing {
 		} finally {
 			CTXS.remove();
 		}
-	}
-
-	public static PersisterProvider getPersisterProvider() {
-		return persisterProvider;
-	}
-
-	public static void setPersisterProvider(PersisterProvider persisterProvider) {
-		Ctxs.persisterProvider = persisterProvider;
-	}
-
-	public static Object createPersister(Ctx ctx) {
-		U.notNull(persisterProvider, "Ctxs.persisterProvider");
-		return persisterProvider.openPersister(ctx);
-	}
-
-	public static void closePersister(Ctx ctx, Object persister) {
-		U.notNull(persisterProvider, "Ctxs.persisterProvider");
-		persisterProvider.closePersister(ctx, persister);
 	}
 
 	public static void reset() {

@@ -50,8 +50,6 @@ public class Ctx extends RapidoidThing implements CtxMetadata {
 
 	private volatile ThreadLocal<Object> persisters = new ThreadLocal<Object>();
 
-	private final List<Object> persistersToClose = Collections.synchronizedList(new LinkedList<Object>());
-
 	private final Map<Object, Object> extras = Coll.synchronizedMap();
 
 	Ctx(String tag) {
@@ -77,21 +75,6 @@ public class Ctx extends RapidoidThing implements CtxMetadata {
 	public void setExchange(Object exchange) {
 		ensureNotClosed();
 		this.exchange = exchange;
-	}
-
-	@SuppressWarnings("unchecked")
-	public synchronized <P> P persister() {
-		ensureNotClosed();
-
-		Object persister = this.persisters.get();
-
-		if (persister == null) {
-			persister = Ctxs.createPersister(this);
-			this.persisters.set(persister);
-			persistersToClose.add(persister);
-		}
-
-		return (P) persister;
 	}
 
 	public synchronized void setPersister(Object persister) {
@@ -130,11 +113,6 @@ public class Ctx extends RapidoidThing implements CtxMetadata {
 		this.exchange = null;
 		this.persisters = null;
 
-		for (Object persister : persistersToClose) {
-			Ctxs.closePersister(this, persister);
-		}
-
-		persistersToClose.clear();
 		extras.clear();
 
 		closed = true;
@@ -151,8 +129,7 @@ public class Ctx extends RapidoidThing implements CtxMetadata {
 		final int maxLen = 10;
 		return prefixed("Ctx [id=" + id + ", tag=" + tag + ", user=" + user + ", exchange=" + exchange
 			+ ", referenceCounter=" + referenceCounter + ", closed=" + closed
-			+ ", persistersToClose=" + toString(persistersToClose, maxLen) + ", extras="
-			+ toString(extras.entrySet(), maxLen) + "]");
+			+ ", extras=" + toString(extras.entrySet(), maxLen) + "]");
 	}
 
 	private String prefixed(String asStr) {

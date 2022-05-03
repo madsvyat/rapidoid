@@ -45,6 +45,7 @@ import org.rapidoid.util.Msc;
 
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -913,7 +914,7 @@ public class ReqImpl extends RapidoidThing implements Req, Constants, HttpMetada
 	private ByteBuffer writeBodyToBuf(Buf out, int bodyLength) {
 		ByteBuffer body = ByteBuffer.allocateDirect(bodyLength);
 		out.writeTo(body, (int) posBeforeBody, bodyLength);
-		body.flip();
+		((Buffer) body).flip();
 		return body;
 	}
 

@@ -222,12 +222,7 @@ public class HttpHtmlApiTest extends IsolatedIntegrationTest {
 
 	@Test
 	public void test16() {
-		On.get("/test16").html(new ReqRespHandler() {
-			@Override
-			public Object execute(Req req, Resp resp) throws Exception {
-				return Bufs.buf("some buffer");
-			}
-		});
+		On.get("/test16").html((ReqRespHandler) (req, resp) -> Bufs.buf("some buffer"));
 
 		onlyGet("/test16");
 	}

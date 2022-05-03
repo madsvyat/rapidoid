@@ -3,4 +3,6 @@ Connection: keep-alive
 Server: Rapidoid
 Date: XXXXX GMT
 Content-Type: text/html; charset=utf-8
+Content-Length: 109
+
 {error=The rapidoid-gui module must be included for the MVC feature!, code=500, status=Internal Server Error}

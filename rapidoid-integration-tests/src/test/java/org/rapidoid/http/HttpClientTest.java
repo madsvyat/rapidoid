@@ -64,7 +64,7 @@ public class HttpClientTest extends IsolatedIntegrationTest {
 				timeout(50000);
 			}
 
-			eq(cb.getResults(), U.set(SIMPLE_RESPONSE));
+			eq(U.set("\"" + SIMPLE_RESPONSE + "\""), cb.getResults());
 
 			client.shutdown();
 		}

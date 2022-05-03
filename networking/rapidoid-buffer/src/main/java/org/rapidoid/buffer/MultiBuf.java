@@ -41,6 +41,7 @@ import javax.net.ssl.SSLException;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
@@ -185,7 +186,7 @@ public class MultiBuf extends OutputStream implements Buf, Constants {
 		}
 
 		bufs[bufN] = bufPool.get();
-		bufs[bufN].clear();
+		((Buffer) bufs[bufN]).clear();
 
 		bufN++;
 	}

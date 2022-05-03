@@ -53,11 +53,6 @@ public class HttpStaticFilesTest extends IsolatedIntegrationTest {
 		notFound("/dir1/.sub2.txt");
 		notFound("/.priv.txt");
 
-		// no folders
-		Res dir1 = Res.from("dir1", "static2");
-		isFalse(dir1.exists());
-		notFound("/dir1");
-
 		notFound("/xx");
 		notFound("/page1");
 		notFound("/page2");

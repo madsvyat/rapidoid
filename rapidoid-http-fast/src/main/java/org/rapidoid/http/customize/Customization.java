@@ -30,7 +30,6 @@ import org.rapidoid.ctx.Ctx;
 import org.rapidoid.ctx.Ctxs;
 import org.rapidoid.http.HttpWrapper;
 import org.rapidoid.http.Req;
-import org.rapidoid.http.customize.defaults.DefaultTemplateLoader;
 import org.rapidoid.http.impl.ErrorHandlerResolver;
 import org.rapidoid.setup.My;
 import org.rapidoid.u.U;
@@ -73,10 +72,6 @@ public class Customization extends RapidoidThing {
 	private volatile ObjectMapper objectMapper;
 	private volatile XmlMapper xmlMapper;
 
-	private volatile EntityManagerProvider entityManagerProvider;
-
-	private volatile EntityManagerFactoryProvider entityManagerFactoryProvider;
-
 	private volatile SessionManager sessionManager;
 
 	private volatile StaticFilesSecurity staticFilesSecurity;
@@ -108,8 +103,6 @@ public class Customization extends RapidoidThing {
 		validator = null;
 		objectMapper = null;
 		xmlMapper = null;
-		entityManagerProvider = null;
-		entityManagerFactoryProvider = null;
 		sessionManager = null;
 		errorHandlers.reset();
 		staticFilesSecurity = null;
@@ -154,18 +147,10 @@ public class Customization extends RapidoidThing {
 	}
 
 	public String[] templatesPath() {
-
-		if (templateLoader != null || defaults == null) {
-			U.must(templateLoader instanceof DefaultTemplateLoader, "A custom template loader was configured!");
-			return ((DefaultTemplateLoader) templateLoader).templatesPath();
-
-		} else {
-			return defaults.templatesPath();
-		}
+		throw new IllegalArgumentException();
 	}
 
 	public Customization templatesPath(String... templatesPath) {
-		this.templateLoader = new DefaultTemplateLoader(templatesPath);
 		return this;
 	}
 
@@ -265,24 +250,6 @@ public class Customization extends RapidoidThing {
 
 	public Customization xmlMapper(XmlMapper xmlMapper) {
 		this.xmlMapper = xmlMapper;
-		return this;
-	}
-
-	public EntityManagerProvider entityManagerProvider() {
-		return entityManagerProvider != null || defaults == null ? entityManagerProvider : defaults.entityManagerProvider();
-	}
-
-	public Customization entityManagerProvider(EntityManagerProvider entityManagerProvider) {
-		this.entityManagerProvider = entityManagerProvider;
-		return this;
-	}
-
-	public EntityManagerFactoryProvider entityManagerFactoryProvider() {
-		return entityManagerFactoryProvider != null || defaults == null ? entityManagerFactoryProvider : defaults.entityManagerFactoryProvider();
-	}
-
-	public Customization entityManagerFactoryProvider(EntityManagerFactoryProvider entityManagerFactoryProvider) {
-		this.entityManagerFactoryProvider = entityManagerFactoryProvider;
 		return this;
 	}
 

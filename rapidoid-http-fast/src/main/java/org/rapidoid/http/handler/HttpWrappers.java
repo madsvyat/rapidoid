@@ -44,7 +44,8 @@ public class HttpWrappers extends RapidoidThing {
 
 		TransactionMode txMode = U.or(options.transaction(), TransactionMode.NONE);
 		if (txMode != TransactionMode.NONE) {
-			wrappers.add(new HttpTxWrapper(txMode));
+			throw new IllegalArgumentException("Transaction mode " + txMode +
+					" is not supported!");
 		}
 
 		Collections.addAll(wrappers, getConfiguredWrappers(http, options));

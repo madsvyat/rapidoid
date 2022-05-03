@@ -24,14 +24,13 @@ package org.rapidoid.setup;
 import org.rapidoid.RapidoidThing;
 import org.rapidoid.annotation.Authors;
 import org.rapidoid.annotation.Since;
-import org.rapidoid.reload.Reload;
 
 @Authors("Nikolche Mihajlovski")
 @Since("5.1.4")
 public class ReloadUtil extends RapidoidThing {
 
 	public static ClassLoader reloader() {
-		return Reload.createClassLoader();
+		throw new IllegalArgumentException();
 	}
 
 }

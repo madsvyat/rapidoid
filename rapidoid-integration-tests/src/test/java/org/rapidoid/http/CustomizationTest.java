@@ -23,6 +23,7 @@ package org.rapidoid.http;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.rapidoid.annotation.Authors;
 import org.rapidoid.annotation.GET;
@@ -34,6 +35,7 @@ import org.rapidoid.setup.My;
 import org.rapidoid.setup.On;
 import org.rapidoid.u.U;
 
+@Ignore
 @Authors("Nikolche Mihajlovski")
 @Since("5.1.0")
 public class CustomizationTest extends IsolatedIntegrationTest {

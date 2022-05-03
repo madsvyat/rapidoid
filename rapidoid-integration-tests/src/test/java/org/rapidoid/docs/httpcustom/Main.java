@@ -42,9 +42,6 @@ public class Main {
 		Conf.HTTP.set("maxPipeline", 32);
 		Conf.NET.set("bufSizeKB", 16);
 
-		// now bootstrap some components, e.g. built-in services, classpath scanning (beans), JMX, Admin Center
-		bootstrap.services().beans().jmx().adminCenter();
-
 		// continue with normal setup
 		On.get("/x").json("x");
 	}

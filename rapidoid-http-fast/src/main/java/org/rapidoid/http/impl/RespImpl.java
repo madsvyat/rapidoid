@@ -423,7 +423,7 @@ public class RespImpl extends RapidoidThing implements Resp {
 	}
 
 	private Screen createScreen() {
-		Screen screen = MscOpts.hasRapidoidGUI() ? GUIUtil.newPage() : new ScreenBean();
+		Screen screen = new ScreenBean();
 		initScreen(screen);
 		return screen;
 	}

@@ -26,7 +26,6 @@ import org.rapidoid.annotation.Authors;
 import org.rapidoid.annotation.RapidoidModuleDesc;
 import org.rapidoid.annotation.Since;
 import org.rapidoid.env.Env;
-import org.rapidoid.jpa.JPAUtil;
 import org.rapidoid.setup.App;
 import org.rapidoid.setup.My;
 import org.rapidoid.setup.On;
@@ -39,7 +38,6 @@ public class HttpModule extends AbstractRapidoidModule {
 
 	@Override
 	public void cleanUp() {
-		JPAUtil.reset(); // FIXME JPA module
 
 		My.reset();
 		App.resetGlobalState();

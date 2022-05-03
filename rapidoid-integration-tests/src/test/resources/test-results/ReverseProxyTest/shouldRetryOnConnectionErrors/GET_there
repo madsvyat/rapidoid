@@ -2,7 +2,6 @@ HTTP/1.1 200 OK
 Connection: keep-alive
 Server: Rapidoid
 Date: XXXXX GMT
-Content-Type: text/html; charset=utf-8
+Content-Type: application/json
 Content-Length: 16
-
-From app: /there
+"From app: /there"

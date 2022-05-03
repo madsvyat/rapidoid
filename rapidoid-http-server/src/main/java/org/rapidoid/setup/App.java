@@ -37,7 +37,6 @@ import org.rapidoid.ioc.Beans;
 import org.rapidoid.ioc.IoC;
 import org.rapidoid.ioc.IoCContext;
 import org.rapidoid.log.Log;
-import org.rapidoid.render.Templates;
 import org.rapidoid.scan.ClasspathScanner;
 import org.rapidoid.scan.ClasspathUtil;
 import org.rapidoid.scan.Scan;
@@ -243,7 +242,6 @@ public class App extends RapidoidInitializer {
 		Conf.reset();
 		Env.reset();
 		Res.reset();
-		Templates.reset();
 		JSON.reset();
 		Beany.reset();
 

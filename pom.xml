@@ -4,7 +4,7 @@
 
 	<groupId>org.rapidoid</groupId>
 	<artifactId>rapidoid</artifactId>
-	<version>5.5.5</version>
+	<version>5.5.5-L</version>
 	<packaging>pom</packaging>
 
 	<name>Rapidoid</name>
@@ -50,34 +50,18 @@
 		<timestamp>${maven.build.timestamp}</timestamp>
 		<maven.build.timestamp.format>yyyy-MM-dd HH:mm z</maven.build.timestamp.format>
 
-		<jackson.version>2.8.5</jackson.version>
+		<jackson.version>2.13.0</jackson.version>
 		<javassist.version>3.22.0-GA</javassist.version>
 
-		<slf4j.version>1.7.21</slf4j.version>
-		<logback.version>1.1.3</logback.version>
+		<slf4j.version>1.7.25</slf4j.version>
+		<logback.version>1.2.3</logback.version>
 
 		<commons-logging.version>1.2</commons-logging.version>
 		<httpclient.version>4.1</httpclient.version>
 		<httpmime.version>4.5</httpmime.version>
 
-		<hikari.version>2.6.1</hikari.version>
-		<c3p0.version>0.9.5.2</c3p0.version>
-		<hibernate.version>4.3.11.Final</hibernate.version>
-
 		<validation-api.version>1.1.0.Final</validation-api.version>
 		<validator.version>5.2.4.Final</validator.version>
-		<el.version>2.2.5</el.version>
-
-		<mysql-connector.version>5.1.41</mysql-connector.version>
-		<h2.version>1.4.187</h2.version>
-		<hsqldb.version>2.3.3</hsqldb.version>
-		<postgresql.version>9.4.1211</postgresql.version>
-
-		<spring.version>4.2.5.RELEASE</spring.version>
-		<guice.version>4.1.0</guice.version>
-		<oltu.version>1.0.1</oltu.version>
-		<mustache.java.version>0.9.1</mustache.java.version>
-		<jmustache.version>1.12</jmustache.version>
 
 		<embedded-maven.version>3.3.9</embedded-maven.version>
 
@@ -89,26 +73,15 @@
 	<modules>
 		<module>commons</module>
 		<module>networking</module>
-		<module>rapidoid-sql</module>
-		<module>rapidoid-jpa</module>
 		<module>rapidoid-inject</module>
-		<module>rapidoid-render</module>
 		<module>rapidoid-http-fast</module>
 		<module>rapidoid-http-client</module>
 		<module>rapidoid-http-server</module>
-		<module>rapidoid-gui</module>
-		<module>rapidoid-oauth</module>
-		<module>rapidoid-integrate</module>
-		<module>rapidoid-web</module>
-		<module>rapidoid-quick</module>
-		<module>rapidoid-watch</module>
 		<module>rapidoid-integration-tests</module>
-		<module>app-maven-plugin</module>
 	</modules>
 
 	<build>
 		<plugins>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -191,10 +164,10 @@
 				<executions>
 					<execution>
 						<id>output-html</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>process-asciidoc</goal>
-						</goals>
+<!--						<phase>generate-resources</phase>-->
+<!--						<goals>-->
+<!--							<goal>process-asciidoc</goal>-->
+<!--						</goals>-->
 						<configuration>
 							<sourceDirectory>asciidoc</sourceDirectory>
 							<headerFooter>true</headerFooter>

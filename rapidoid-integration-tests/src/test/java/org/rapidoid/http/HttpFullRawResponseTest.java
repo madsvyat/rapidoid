@@ -37,14 +37,14 @@ public class HttpFullRawResponseTest extends IsolatedIntegrationTest {
 
 	@Test
 	public void testBytesRawResponse() {
-		On.get("/bytes").html(req -> req.response().raw(BYTES_RESPONSE.getBytes()));
+		On.get("/bytes").plain(req -> req.response().raw(BYTES_RESPONSE.getBytes()));
 
 		onlyGet("/bytes");
 	}
 
 	@Test
 	public void testByteBufferRawResponse() {
-		On.get("/buf").html((Req req, Resp resp) -> resp.raw(Bufs.buf(BUF_RESPONSE)));
+		On.get("/buf").plain((Req req, Resp resp) -> resp.raw(Bufs.buf(BUF_RESPONSE)));
 
 		onlyGet("/buf");
 	}

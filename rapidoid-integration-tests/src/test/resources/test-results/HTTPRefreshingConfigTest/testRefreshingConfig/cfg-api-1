@@ -1,5 +1,1 @@
-{
-  "/" : {
-    "sql" : "select * from foo"
-  }
-}
+{ }

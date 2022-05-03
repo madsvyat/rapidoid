@@ -335,18 +335,8 @@ public class IoCContextImpl extends RapidoidThing implements IoCContext {
 
 	private Object provideSpecialInstance(Class<?> type, String name) {
 
-		String cls = type.getName();
-
 		if (type.equals(IoCContext.class)) {
 			return U.or(wrapper, this);
-		}
-
-		if (cls.equals("javax.persistence.EntityManager") && MscOpts.hasRapidoidJPA()) {
-			return OptionalJPAUtil.getSharedContextAwareEntityManagerProxy();
-		}
-
-		if (cls.equals("javax.persistence.EntityManagerFactory") && MscOpts.hasRapidoidJPA()) {
-			return OptionalJPAUtil.getSharedEntityManagerFactoryProxy();
 		}
 
 		return null;

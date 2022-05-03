@@ -24,9 +24,7 @@ package org.rapidoid.http;
 import org.junit.Test;
 import org.rapidoid.annotation.Authors;
 import org.rapidoid.annotation.Since;
-import org.rapidoid.gui.GUI;
 import org.rapidoid.setup.On;
-import org.rapidoid.u.U;
 import org.rapidoid.web.Screen;
 
 @Authors("Nikolche Mihajlovski")
@@ -62,13 +60,6 @@ public class HttpRenderTest extends IsolatedIntegrationTest {
 			return resp.view("view1").mvc(true);
 		});
 
-		On.get("/piece").mvc((Resp respo, Screen screen) -> {
-			respo.screen().title("my-title");
-			screen.brand(GUI.span(GUI.fa("cog"), "The Brand!"));
-			respo.model("x", 12345);
-			return U.map("screen", screen);
-		});
-
 		On.get("/defaults").mvc((Req req) -> new byte[0]);
 
 		onlyGet("/view1");
@@ -77,7 +68,6 @@ public class HttpRenderTest extends IsolatedIntegrationTest {
 		onlyGet("/abc");
 		onlyGet("/views/sub");
 		onlyGet("/views/sub");
-		onlyGet("/piece");
 		onlyGet("/defaults");
 
 		verifyRoutes();

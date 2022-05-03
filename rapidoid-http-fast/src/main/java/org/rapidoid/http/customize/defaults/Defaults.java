@@ -31,7 +31,6 @@ import org.rapidoid.data.XML;
 import org.rapidoid.env.Env;
 import org.rapidoid.http.HttpWrapper;
 import org.rapidoid.http.customize.*;
-import org.rapidoid.render.Templates;
 import org.rapidoid.scan.ClasspathUtil;
 import org.rapidoid.u.U;
 
@@ -59,19 +58,9 @@ public class Defaults extends RapidoidThing {
 
 	private static final RolesProvider rolesProvider = new DefaultRolesProvider();
 
-	private static final PageDecorator pageDecorator = new DefaultPageDecorator();
-
-	private static final ResourceLoader templateLoader = new DefaultTemplateLoader(Templates.DEFAULT_PATH);
-
-	private static final ViewResolver viewResolver = new DefaultViewResolver();
-
 	private static final ObjectMapper objectMapper = JSON.newMapper();
 
 	private static final XmlMapper xmlMapper = XML.newMapper();
-
-	private static final EntityManagerProvider entityManagerProvider = null;
-
-	private static final EntityManagerFactoryProvider entityManagerFactoryProvider = new DefaultEntityManagerFactoryProvider();
 
 	private static final HttpRequestBodyParser jsonRequestBodyParser = new DefaultJsonRequestBodyParser();
 
@@ -119,32 +108,12 @@ public class Defaults extends RapidoidThing {
 		return rolesProvider;
 	}
 
-	public static PageDecorator pageDecorator() {
-		return pageDecorator;
-	}
-
-	public static ViewResolver viewResolver() {
-		return viewResolver;
-	}
-
 	public static ObjectMapper objectMapper() {
 		return objectMapper;
 	}
 
 	public static XmlMapper xmlMapper() {
 		return xmlMapper;
-	}
-
-	public static EntityManagerProvider entityManagerProvider() {
-		return entityManagerProvider;
-	}
-
-	public static EntityManagerFactoryProvider entityManagerFactoryProvider() {
-		return entityManagerFactoryProvider;
-	}
-
-	public static String[] templatesPath() {
-		return Templates.getPath();
 	}
 
 	public static HttpRequestBodyParser jsonRequestBodyParser() {
@@ -167,7 +136,4 @@ public class Defaults extends RapidoidThing {
 		return wrappers;
 	}
 
-	public static ResourceLoader templateLoader() {
-		return templateLoader;
-	}
 }

@@ -27,7 +27,6 @@ import org.rapidoid.commons.AnyObj;
 import org.rapidoid.config.Conf;
 import org.rapidoid.config.Config;
 import org.rapidoid.config.RapidoidInitializer;
-import org.rapidoid.ctx.Ctxs;
 import org.rapidoid.data.JSON;
 import org.rapidoid.env.Env;
 import org.rapidoid.env.RapidoidEnv;
@@ -82,10 +81,6 @@ public class Setup extends RapidoidInitializer {
 	static final List<Setup> instances = Coll.synchronizedList();
 
 	static {
-
-		if (Ctxs.getPersisterProvider() == null) {
-			Ctxs.setPersisterProvider(new CustomizableSetupAwarePersisterProvider());
-		}
 
 		JSON.warmUp();
 

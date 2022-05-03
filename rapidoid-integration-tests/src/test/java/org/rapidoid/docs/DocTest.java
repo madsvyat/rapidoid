@@ -24,7 +24,6 @@ package org.rapidoid.docs;
 import org.junit.Test;
 import org.rapidoid.commons.Str;
 import org.rapidoid.docs.blank.BlankTest;
-import org.rapidoid.fluent.Do;
 import org.rapidoid.http.IsolatedIntegrationTest;
 import org.rapidoid.io.FileSearchResult;
 import org.rapidoid.io.IO;
@@ -38,6 +37,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 /**
  * Base class used as entry point, to execute an example and generate the docs.
@@ -146,8 +146,8 @@ public abstract class DocTest extends IsolatedIntegrationTest {
 		List<FileSearchResult> res = IO.find().files().in(resDir).recursive().getResults();
 		Collections.sort(res);
 		filenames.addAll(res);
-
-		return Do.map(filenames).to(f -> f.relativeName(), f -> IO.load(f.absoluteName()));
+		return filenames.stream().collect(Collectors.toMap(FileSearchResult::relativeName,
+				it -> IO.load(it.absoluteName())));
 	}
 
 	protected void exercise() {

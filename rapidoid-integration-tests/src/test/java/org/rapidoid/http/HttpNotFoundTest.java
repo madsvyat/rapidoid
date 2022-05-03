@@ -47,7 +47,7 @@ public class HttpNotFoundTest extends IsolatedIntegrationTest {
 
 	@Test
 	public void testReturningNullAsNotFound() {
-		On.post("/bar").html(req -> {
+		On.post("/bar").json(req -> {
 			if (req.params().isEmpty()) {
 				return null;
 			}

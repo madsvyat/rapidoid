@@ -24,7 +24,6 @@ package org.rapidoid.util;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.junit.Test;
 import org.rapidoid.RapidoidThing;
 import org.rapidoid.annotation.Authors;
@@ -35,7 +34,6 @@ import org.rapidoid.u.U;
 
 import java.io.OutputStream;
 import java.util.Map;
-
 @Authors("Nikolche Mihajlovski")
 @Since("5.1.0")
 public class RapidoidThingsTest {
@@ -55,7 +53,6 @@ public class RapidoidThingsTest {
 					|| clazz == TestCommons.class
 					|| Exception.class.isAssignableFrom(clazz)
 					|| ClassLoader.class.isAssignableFrom(clazz)
-					|| HibernatePersistenceProvider.class.isAssignableFrom(clazz)
 					|| OutputStream.class.isAssignableFrom(clazz)
 					|| Map.class.isAssignableFrom(clazz)
 					|| JsonSerializer.class.isAssignableFrom(clazz)

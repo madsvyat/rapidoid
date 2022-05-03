@@ -55,7 +55,7 @@ public class BeanyPropertiesTest extends BeanyTestCommons {
 	@Test
 	public void testGetPropValue() {
 		Baz baz = new Baz();
-		Assert.assertEquals(baz.x, Beany.getPropValue(baz, "x"));
+		Assert.assertEquals((Object) baz.x, Beany.getPropValue(baz, "x"));
 	}
 
 	public void testGetIdValue() {

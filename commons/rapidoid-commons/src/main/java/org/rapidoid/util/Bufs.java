@@ -24,6 +24,7 @@ import org.rapidoid.RapidoidThing;
 import org.rapidoid.annotation.Authors;
 import org.rapidoid.annotation.Since;
 
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
 
 
@@ -89,7 +90,7 @@ public class Bufs extends RapidoidThing {
 
 		ByteBuffer buf = ByteBuffer.allocateDirect(bytes.length);
 		buf.put(bytes);
-		buf.rewind();
+		((Buffer) buf).rewind();
 
 		return buf;
 	}

@@ -25,7 +25,6 @@ import org.rapidoid.RapidoidThing;
 import org.rapidoid.annotation.Authors;
 import org.rapidoid.annotation.Since;
 import org.rapidoid.cls.Cls;
-import org.rapidoid.jpa.JPA;
 import org.rapidoid.u.U;
 import org.rapidoid.util.Msc;
 import org.rapidoid.util.MscOpts;
@@ -45,7 +44,7 @@ public class AppBootstrap extends RapidoidThing {
 		@Override
 		protected void bootstrap() {
 			if (MscOpts.hasJPA()) {
-				JPA.bootstrap(App.path());
+				throw U.illegal("JPA is not supported");
 			}
 		}
 	};

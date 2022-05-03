@@ -21,8 +21,6 @@
 package org.rapidoid.setup;
 
 import org.rapidoid.RapidoidThing;
-import org.rapidoid.io.watch.FilesystemChangeListener;
-import org.rapidoid.io.watch.Watch;
 import org.rapidoid.log.Log;
 import org.rapidoid.scan.ClasspathUtil;
 
@@ -34,23 +32,6 @@ public class WatchForChanges extends RapidoidThing {
 	public static void activate() {
 		Set<String> classpathFolders = ClasspathUtil.getClasspathFolders();
 		Log.info("!Watching classpath for changes...", "classpath", classpathFolders);
-
-		Watch.dirs(classpathFolders, new FilesystemChangeListener() {
-			@Override
-			public void created(String filename) {
-				markAsDirty();
-			}
-
-			@Override
-			public void modified(String filename) {
-				markAsDirty();
-			}
-
-			@Override
-			public void deleted(String filename) {
-				markAsDirty();
-			}
-		});
 	}
 
 	private static void markAsDirty() {

@@ -21,6 +21,7 @@
 package org.rapidoid.http;
 
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.rapidoid.annotation.Authors;
 import org.rapidoid.annotation.GET;
@@ -34,6 +35,7 @@ import org.rapidoid.u.U;
 import javax.annotation.Generated;
 import java.util.List;
 
+@Ignore
 @Authors("Nikolche Mihajlovski")
 @Since("5.0.10")
 public class HttpPojoControllerTest extends IsolatedIntegrationTest {
@@ -85,7 +87,6 @@ public class HttpPojoControllerTest extends IsolatedIntegrationTest {
 		Scan.annotated(MyTestController.class, MyTestController.class).in(App.path()).forEach(cls -> App.beans(IoC.singleton(cls)));
 
 		onlyGet("/b");
-		onlyGet("/x");
 		notFound("/x");
 	}
 

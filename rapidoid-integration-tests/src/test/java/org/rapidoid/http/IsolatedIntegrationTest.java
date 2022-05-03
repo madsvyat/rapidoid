@@ -32,11 +32,8 @@ import org.rapidoid.config.Conf;
 import org.rapidoid.crypto.Crypto;
 import org.rapidoid.data.JSON;
 import org.rapidoid.env.Env;
-import org.rapidoid.fluent.Do;
 import org.rapidoid.io.IO;
 import org.rapidoid.job.Jobs;
-import org.rapidoid.jpa.JPA;
-import org.rapidoid.jpa.JPAUtil;
 import org.rapidoid.lambda.Executable;
 import org.rapidoid.lambda.F3;
 import org.rapidoid.lambda.Lmbd;
@@ -61,6 +58,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 import java.util.concurrent.ScheduledFuture;
+import java.util.stream.Collectors;
 
 @Authors("Nikolche Mihajlovski")
 @Since("5.2.5")
@@ -81,8 +79,6 @@ public abstract class IsolatedIntegrationTest extends TestCommons {
 
 		RapidoidModules.getAll(); // all modules must be present
 		RapidoidIntegrationTest.before(this);
-
-		JPAUtil.reset();
 
 		Conf.ROOT.setPath(getTestNamespace());
 
@@ -300,8 +296,10 @@ public abstract class IsolatedIntegrationTest extends TestCommons {
 
 		String notFound = U.notNull(IO.load("404-not-found.txt"), "404-not-found");
 		String notFound2 = U.notNull(IO.load("404-not-found-json.txt"), "404-not-found-json");
+		String notFound3 = U.notNull(IO.load("404-not-found-json-pretty.txt"), "404-not-found-json-pretty");
 
-		if (!httpResultsMatch(resp, notFound) && !httpResultsMatch(resp, notFound2)) {
+		if (!httpResultsMatch(resp, notFound) && !httpResultsMatch(resp, notFound2)
+				&& !httpResultsMatch(resp, notFound3)) {
 			eq(resp, "!!! Expected (404 Not Found) HTTP response as HTML or JSON !!!!");
 		}
 	}
@@ -389,8 +387,8 @@ public abstract class IsolatedIntegrationTest extends TestCommons {
 	}
 
 	protected String appRoutes() {
-		List<String> routes = Do.map(On.routes().all()).to((Route r) -> r.toString());
-		Collections.sort(routes);
+		List<String> routes = On.routes().all().stream().map(Route::toString)
+				.sorted().collect(Collectors.toList());
 		return U.join("\n", routes);
 	}
 
@@ -408,10 +406,6 @@ public abstract class IsolatedIntegrationTest extends TestCommons {
 
 	protected void verifyJson(String name, Object actual) {
 		verifyCase(name, JSON.prettify(actual), name);
-	}
-
-	protected void tx(Runnable action) {
-		JPA.transaction(action);
 	}
 
 	protected void proxy(String match, String upstreams) {

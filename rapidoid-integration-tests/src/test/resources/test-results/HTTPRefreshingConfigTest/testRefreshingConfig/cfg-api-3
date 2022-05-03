@@ -1,6 +1,1 @@
-{
-  "/books" : {
-    "desc" : "books",
-    "sql" : "select * from books"
-  }
-}
+{ }

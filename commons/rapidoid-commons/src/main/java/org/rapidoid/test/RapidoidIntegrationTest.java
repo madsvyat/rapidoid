@@ -57,7 +57,9 @@ public abstract class RapidoidIntegrationTest extends RapidoidTest {
 		after(this);
 
 		if (hasError()) {
+			System.err.println("-->> HAS ERROR!!!");
 			Assert.fail("Assertion error(s) occurred, probably were caught or were thrown on non-main thread!");
+			System.exit(-1);
 		}
 	}
 

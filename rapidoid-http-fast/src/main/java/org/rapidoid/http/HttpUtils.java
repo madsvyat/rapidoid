@@ -31,7 +31,6 @@ import org.rapidoid.config.Conf;
 import org.rapidoid.ctx.Ctxs;
 import org.rapidoid.ctx.UserInfo;
 import org.rapidoid.data.BufRanges;
-import org.rapidoid.gui.reqinfo.ReqInfo;
 import org.rapidoid.http.customize.Customization;
 import org.rapidoid.http.customize.HttpResponseRenderer;
 import org.rapidoid.http.handler.HandlerResultProcessor;
@@ -286,8 +285,7 @@ public class HttpUtils extends RapidoidThing implements HttpMetadata {
 	}
 
 	public static String cookiePath() {
-		String ctxPath = ReqInfo.get().contextPath();
-		return U.notEmpty(ctxPath) ? ctxPath : "/";
+		return "/";
 	}
 
 	public static void clearUserData(Req req) {
